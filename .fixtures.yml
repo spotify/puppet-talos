@@ -1,0 +1,6 @@
+fixtures:
+  forge_modules:
+    apache: 'puppetlabs/apache'
+    vscrepo: 'puppetlabs/vcsrepo'
+  symlinks:
+    talos: "#{source_dir}"

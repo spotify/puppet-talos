@@ -1,0 +1,23 @@
+{
+  "name": "spotify-talos",
+  "version": "0.1.0",
+  "author": "Alexey Lapitsky",
+  "license": "Apache-2.0",
+  "summary": "Manage Talos, hiera secrets distribution tool.",
+  "source": "https://github.com/spotify/puppet-talos",
+  "project_page": "https://github.com/spotify/puppet-talos",
+  "issues_url": "https://github.com/spotify/puppet-talos/issues",
+  "tags": ["puppet", "talos", "hiera", "secrets"],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "14.04"
+      ]
+    }
+  ],
+  "dependencies": [
+    { "name": "puppetlabs/apache", "version_requirement": ">= 1.6.0" },
+    { "name": "puppetlabs/vcsrepo", "version_requirement": ">= 1.0.0" }
+  ]
+}

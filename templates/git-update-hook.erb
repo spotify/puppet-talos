@@ -1,0 +1,62 @@
+#!/bin/bash
+# Called by "git receive-pack" with arguments: refname sha1-old sha1-new
+
+# --- Command line
+refname="$1"
+oldrev="$2"
+newrev="$3"
+
+# --- Safety check
+if [ -z "$GIT_DIR" ]; then
+    echo "Don't run this script from the command line." >&2
+    echo " (if you want, you could supply GIT_DIR then run" >&2
+    echo "  $0 <ref> <oldrev> <newrev>)" >&2
+    exit 1
+fi
+
+checkouts_dir="<%= @checkout_directory %>"
+export GIT_DIR
+
+if [ -z "$refname" -o -z "$oldrev" -o -z "$newrev" ]; then
+    echo "Usage: $0 <ref> <oldrev> <newrev>" >&2
+    exit 1
+fi
+
+case "$refname" in
+    refs/heads/*)
+        branch_name="${refname##refs/heads/}"
+        clean_branch_name="$(tr -C a-zA-Z0-9\\n _ <<<"${branch_name}")"
+        clean_branch_path="${checkouts_dir}/${clean_branch_name}"
+        oldrev_path="${clean_branch_path}.$oldrev"
+        newrev_path="${clean_branch_path}.$newrev"
+
+        if [ ! "$newrev" = "0000000000000000000000000000000000000000" ] # there is a new checkout
+        then
+            echo "Creating new checkout for branch $branch_name..."
+            mkdir -p $newrev_path
+            GIT_WORK_TREE=$newrev_path git checkout --force --quiet $newrev
+            ln -nsf "$clean_branch_name.$newrev" "$clean_branch_path"
+
+            if [ ! $oldrev = "0000000000000000000000000000000000000000" ]
+            then
+                echo "Removing old checkout for branch $branch_name..." >&2
+                rm -fr "$oldrev_path"
+            fi
+
+            echo "Done updating the checkout for $branch_name." >&2
+            echo "$branch_name is available under the Puppet environment $clean_branch_name." >&2
+        else
+            echo "Removing the checkout for branch $branch_name..." >&2
+            rm -fr "$oldrev_path" "$clean_branch_path"
+            echo "Done removing the checkout for branch $branch_name." >&2
+        fi
+        ;;
+    refs/tags/*|refs/remotes/*)
+        exit 0
+        ;;
+    *)
+        echo "*** Update hook: unknown ref $refname" >&2
+        exit 1
+        ;;
+esac
+exit 0
