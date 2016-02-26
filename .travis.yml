@@ -1,2 +1,11 @@
 language: ruby
+cache: bundler
+sudo: false
 script: "bundle exec rake validate && bundle exec rake lint && bundle exec rake spec"
+deploy:
+  provider: puppetforge
+  user: spotify
+  password:
+    secure: "HPZZIejOvQf8SZuu9NXTmzoirHbiPDpxP2eXmPEZjjklLlfEPz/h/OARgMlBubb22IDGOmWu7GA5WHcLCdY1Rw3sX0E7zJdFImK6R8+x0TgyRsE68K/cLpkYQ0Ac8mIUR2yKesxcn2EdQpm6Ia+wiy+q6RN9GXlgKUJ9HZaWrb/PGbFFbqmkpuqJCgi5I4+/DS53K0edXEK3BN0KuryfXLLZ04ScTCzmtvZGKxaRmF0rDBw01xgfvGBqSWTVO6viGwtZf3/M+lPCj4R88VkhFcP8r7LbhnJXW8dm0AEVP8rFrwEKvDXvOR0QMIglUUPI7NMlGCrx695kIfydseRPNnJTchVuoDQ14R3+EkjfrR9Ujb39bZrArSQVyaT4hVk+EVE+nRl2/foHfR2TRjpZa5BNvGyaQOmKpvqaj9hIT7PvT7i0TPsHchW5wk2mGo6eIxPIVIq2AqDRWd0gd4KEMKOMD7nHCb4vFqOcn45a34HRqdp3v0ro0PzbWWyG7Mpnw3zecw6FBGBvKYx5fHyis3EHzWM+XkoE3xLScgxaqdzm2oK3IE3S6VV9081xjtSlUsmfrB+Grbu8U81bVLi/vs+B+tnC8ZVldC1fAoAfazQG0+Rp8lPJZ20kT41gxFHwRTbzHAkxZj1funxpImR3zoRggITqtpBXP62/kKd5p8E="
+  on:
+    tags: true
