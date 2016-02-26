@@ -32,11 +32,13 @@ class talos (
   $chainfile               = "${::settings::ssldir}/certs/ca.pem",
   $configure_repo          = true,
   $configure_apache        = true,
+  $talos_package_ensure    = 'present',
+  $talos_package_provider  = 'gem',
 ) {
 
   package { 'talos':
-    ensure   => latest,
-    provider => gem,
+    ensure   => $talos_package_ensure,
+    provider => $talos_package_provider,
   }
 
   file { $homedir:
