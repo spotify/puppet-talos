@@ -1,4 +1,5 @@
 source ENV['GEM_SOURCE'] || "https://rubygems.org"
+ruby "2.3.0"
 
 group :unit_tests do
   gem 'rake', require: false

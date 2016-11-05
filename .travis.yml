@@ -1,7 +1,12 @@
 language: ruby
+rvm:
+  - 2.3.0
 cache: bundler
 sudo: false
 script: "bundle exec rake validate && bundle exec rake lint && bundle exec rake spec"
+env:
+  global:
+    - CUSTOM_RUBY_VERSION=2.3.0
 deploy:
   provider: puppetforge
   username: spotify
