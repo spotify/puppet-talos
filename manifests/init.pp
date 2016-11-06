@@ -32,6 +32,7 @@ class talos (
   $chainfile               = "${::settings::ssldir}/certs/ca.pem",
   $configure_repo          = true,
   $configure_apache        = true,
+  $apache_access_logs      = undef,
   $talos_package_ensure    = 'present',
   $talos_package_provider  = 'gem',
 ) {
@@ -145,6 +146,7 @@ class talos (
       servername        => $::fqdn,
       port              => 8141,
       docroot           => "${homedir}/public",
+      access_logs       => $apache_access_logs,
       ssl               => true,
       ssl_ca            => $cafile,
       ssl_chain         => $cafile,
