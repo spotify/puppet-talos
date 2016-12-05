@@ -1,6 +1,6 @@
 {
   "name": "spotify-talos",
-  "version": "0.1.0",
+  "version": "0.1.5",
   "author": "Alexey Lapitsky",
   "license": "Apache-2.0",
   "summary": "Manage Talos, hiera secrets distribution tool.",
