@@ -25,6 +25,7 @@ class talos (
   $user                    = 'talos',
   $group                   = 'talos',
   $homedir                 = '/var/lib/talos',
+  $shell                   = undef,
   $certfile                = "${::settings::ssldir}/certs/${::fqdn}.pem",
   $keyfile                 = "${::settings::ssldir}/private_keys/${::fqdn}.pem",
   $cafile                  = "${::settings::ssldir}/certs/ca.pem",
@@ -52,6 +53,7 @@ class talos (
     system => true,
     home   => $homedir,
     gid    => $group,
+    shell  => $shell,
   }
 
   group { $group:
