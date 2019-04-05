@@ -35,6 +35,19 @@ case "$refname" in
             echo "Creating new checkout for branch $branch_name..."
             mkdir -p $newrev_path
             GIT_WORK_TREE=$newrev_path git checkout --force --quiet $newrev
+            
+            if [ ! -f "$checkouts_dir/master/README.md" ]
+            then
+                echo "Sanity check file does not exist..." >&2
+                exit 1
+            fi
+
+            if [ ! -s "$checkouts_dir/master/README.md" ]
+            then
+                echo "Empty sanity check file..." >&2
+                exit 1
+            fi
+            
             ln -nsf "$clean_branch_name.$newrev" "$clean_branch_path"
 
             if [ ! $oldrev = "0000000000000000000000000000000000000000" ]
