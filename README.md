@@ -1,4 +1,4 @@
-puppet-talos
+puppet-talos x
 ============
 
 [![Build Status](https://travis-ci.org/spotify/puppet-talos.png?branch=master)](https://travis-ci.org/spotify/puppet-talos)
