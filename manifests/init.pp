@@ -29,7 +29,7 @@ class talos (
   $certfile                = "${::settings::ssldir}/certs/${::fqdn}.pem",
   $keyfile                 = "${::settings::ssldir}/private_keys/${::fqdn}.pem",
   $cafile                  = "${::settings::ssldir}/certs/ca.pem",
-  $crlfile                 = "${::settings::ssldir}/crl.pem",
+  $crlfile                 = undef,
   $chainfile               = "${::settings::ssldir}/certs/ca.pem",
   $configure_repo          = true,
   $configure_apache        = true,
