@@ -1,7 +1,9 @@
 puppet-talos
 ============
 
-[![Build Status](https://travis-ci.org/spotify/puppet-talos.png?branch=master)](https://travis-ci.org/spotify/puppet-talos)
+*After faithfully serving Spotify with secrets for 10 years Talos has now been sunset and will not see any new releases.*
+
+
 [![Puppet Forge Version](http://img.shields.io/puppetforge/v/spotify/talos.svg)](https://forge.puppetlabs.com/spotify/talos)
 
 Puppet module to manage [Talos](https://github.com/spotify/talos), Hiera secrets distribution tool.
